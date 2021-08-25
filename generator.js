@@ -2,7 +2,7 @@ require('./polyfill/array.js')
 const faker = require('faker/locale/zh_CN')
 
 /**
- * 
+ * 生成一组数字
  * @param {number} start 开始值
  * @param {number} stop 结束值
  * @param {number} step 间隔
@@ -20,6 +20,11 @@ function getFutureYears (count) {
     return range(currentYear, currentYear + count, 1)
 }
 
+/**
+ * 生成用户列表
+ * @param {number} count 个数
+ * @returns 
+ */
 function generateMembers (count) {
     const members = []
     for (var i = count; i >= 0; i--) {
@@ -31,8 +36,20 @@ function generateMembers (count) {
     return members
 }
 
+/**
+ * 简单生成仿 uuid
+ * @returns string
+ */
+function uid () {
+    function S4() {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
+    }
+    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4())
+}
+
 module.exports = {
     range,
     getFutureYears,
-    generateMembers
+    generateMembers,
+    uid
 }
